@@ -11,7 +11,7 @@ jobs:
         env:
           JIRA_API_TOKEN: 'jiraApiToke'
           JIRA_USERNAME: 'user@email.com'
-          JIRA_ACCOUNT_URL: 'bryan-nice'
+          JIRA_ACCOUNT_URL: 'https://someaccount.atlassian.net/'
           JIRA_PROJECT: 'jira-issue-creation'
           JIRA_ISSUE_TYPE: 'Demo''ing Jira Issue Creation'
           JIRA_ISSUE_DESCRIPTION: 'Demo''ing Jira Issue Creation'
