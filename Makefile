@@ -6,10 +6,6 @@
 GIT_REPOSITORY_NAME := $(shell basename `git rev-parse --show-toplevel`)
 GIT_VERSION := $(shell git describe --always --tags --long --dirty | sed -e 's/\-0//' -e 's/\-g.......//')
 
-# Docker variables
-
-DOCKER_IMAGE_TAG ?= $(GIT_REPOSITORY_NAME):$(GIT_VERSION)
-
 # -------------
 # FUNCTIONS
 # -------------
@@ -40,22 +36,24 @@ default: help
 # Docker-based builds
 # -----------------------------------------------------------------------------
 
-.PHONY: docker
-docker: docker-rmi-for-build
+.PHONY: docker-build
+docker-build: docker-rmi-for-build
 	docker build \
-	    --tag $(DOCKER_IMAGE_NAME) \
-		--tag $(DOCKER_IMAGE_NAME):$(GIT_VERSION) \
+	    --tag $(GIT_REPOSITORY_NAME):$(GIT_VERSION) \
 		.
+
+# -----------------------------------------------------------------------------
+# Clean up targets
+# -----------------------------------------------------------------------------
 
 .PHONY: docker-rmi-for-build
 docker-rmi-for-build:
 	-docker rmi --force \
-		$(DOCKER_IMAGE_NAME):$(GIT_VERSION) \
-		$(DOCKER_IMAGE_NAME)
+		$(GIT_REPOSITORY_NAME):$(GIT_VERSION)
 
 .PHONY: docker-rmi-for-build-development-cache
 docker-rmi-for-build-development-cache:
-	-docker rmi --force $(DOCKER_IMAGE_TAG)
+	-docker rmi --force $(GIT_REPOSITORY_NAME):$(GIT_VERSION)
 
 .PHONY: clean
 clean: docker-rmi-for-build docker-rmi-for-build-development-cache
