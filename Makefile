@@ -36,8 +36,8 @@ default: help
 # Docker-based builds
 # -----------------------------------------------------------------------------
 
-.PHONY: docker-build
-docker-build: docker-rmi-for-build
+.PHONY: docker
+docker: docker-rmi-for-build
 	docker build \
 	    --tag $(GIT_REPOSITORY_NAME):$(GIT_VERSION) \
 		.
