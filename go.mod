@@ -1,4 +1,4 @@
-module github.com/senzing/git-action-jira-issue-creation
+module github.com/bryan-nice/jira-issue-creation
 
 go 1.13
 
