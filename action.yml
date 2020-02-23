@@ -9,4 +9,4 @@ outputs:
     description: 'Url to the jira issue created'
 runs:
   using: 'docker'
-  image: 'docker://bryannice/jira-issue-creation:1.1.1'
+  image: 'docker://bryannice/jira-issue-creation:1.1.2'
