@@ -40,7 +40,7 @@ default: help
 docker: docker-rmi-for-build
 	docker build \
 	    --tag $(GIT_REPOSITORY_NAME):$(GIT_VERSION) \
-		.
+		build/docker
 
 # -----------------------------------------------------------------------------
 # Clean up targets
