@@ -3,8 +3,9 @@ package main
 import (
 	"fmt"
 	jira "github.com/andygrunwald/go-jira"
-	"github.com/bryan-nice/jira-issue-creation/configuration"
+	"github.com/senzing/git-action-jira-issue-creation/configuration"
 	"github.com/pkg/errors"
+	"os"
 	"log"
 )
 
@@ -28,8 +29,9 @@ func main() {
 	jiraAccountUrl := config.JiraAccountUrl
 	jiraProject := config.JiraProject
 	jiraIssueType := config.JiraIssueType
-	jiraIssueDescription := config.JiraIssueDescription
 	jiraIssueSummary := config.JiraIssueSummary
+	jiraIssueDescription := config.JiraIssueDescription
+	jiraIssueAttachment := config.JiraIssueAttachment
 
 	tp := jira.BasicAuthTransport{
 		Username: jiraUsername,
@@ -71,6 +73,14 @@ func main() {
 		issue, _, err := jiraClient.Issue.Create(&i)
 		if err != nil {
 			log.Printf("%+v", errors.Wrap(err, "Exception"))
+		}
+
+		if len(jiraIssueAttachment) != 0 {
+			f, err := os.Open(jiraIssueAttachment)
+			if err != nil {
+				log.Printf("%+v", errors.Wrap(err, "Exception"))
+			}
+			jiraClient.Issue.PostAttachment(issue.Key, f, jiraIssueAttachment)
 		}
 
 		result = fmt.Sprintf("%sbrowse/%s", jiraAccountUrl, string(issue.Key))
