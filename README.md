@@ -49,6 +49,10 @@ These are the environment variables that can be set to pass in additional inform
 | JIRA_PROJECT | Yes | Jira project the ticket will be filed under. |
 | JIRA_USERNAME | Yes | Jira user email. |
 
+## JIRA_ISSUE_ATTACHMENT Usage
+
+Git Actions mounts the runner's working directory to /github/workspace as a default and it is controlled by Git Hub's system. Make sure the file being attached is stored in the runner's workspace (it will be in the directory the repo was clone into on the runner). Otherwise, this Git Action will not be able to see the file it needs to attach to the Jira Issue.
+
 ## Reference
 
 * [Creating an API toke for a user.](https://confluence.atlassian.com/cloud/api-tokens-938839638.html)
