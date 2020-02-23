@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  ciTestBuildOnBranch:
+  ciBuildOnBranch:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -14,11 +14,7 @@ jobs:
         run: printenv
       - name: Build Docker Image
         id: build_docker_image
-        run: |
-          docker build --tag jira-issue-creation:${GITHUB_HEAD_REF:-${GITHUB_REF##*/}} \
-            --build-arg "GITHUB_HEAD_REF=${GITHUB_HEAD_REF:-${GITHUB_REF##*/}}" \
-            --build-arg "GITHUB_EVENT_NAME=${GITHUB_EVENT_NAME}" \
-            build/docker
+        run: make docker
       - name: Slack Notification
         id: slack_notification
         uses: bryan-nice/slack-notification@1.0.2
