@@ -20,20 +20,24 @@ RUN git clone https://github.com/bryan-nice/jira-issue-creation.git
 WORKDIR /go/src/jira-issue-creation
 
 # Building go app
-#RUN make build
+RUN make build
 
 # -----------------------------------------------------------------------------
 # Stage: BUILD
 # -----------------------------------------------------------------------------
-#FROM alpine:3.10
+FROM alpine:3.10
 
-#LABEL "com.github.actions.icon"="message-square"
-#LABEL "com.github.actions.color"="purple"
-#LABEL "com.github.actions.name"="Jira Issue Creation"
-#LABEL "com.github.actions.description"="Create a Jira Issue"
+LABEL "com.github.actions.icon"="message-square"
+LABEL "com.github.actions.color"="purple"
+LABEL "com.github.actions.name"="Jira Issue Creation"
+LABEL "com.github.actions.description"="Create a Jira Issue"
 
-#COPY --from=BUILD /go/bin/jira-issue-creation /usr/bin
-#COPY --from=BUILD /go/src/jira-issue-creation/LICENSE /
-#COPY --from=BUILD /go/src/jira-issue-creation/README.md /
+COPY --from=BUILD /go/bin/jira-issue-creation /usr/bin
+COPY --from=BUILD /go/src/jira-issue-creation/LICENSE /
+COPY --from=BUILD /go/src/jira-issue-creation/README.md /
 
-#ENTRYPOINT ["jira-issue-creation"]
+RUN mkdir -p /github
+
+WORKDIR /github
+
+ENTRYPOINT ["jira-issue-creation"]
