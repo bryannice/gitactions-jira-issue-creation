@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 	jira "github.com/andygrunwald/go-jira"
-	"github.com/senzing/git-action-jira-issue-creation/configuration"
+	"github.com/bryan-nice/jira-issue-creation/configuration"
 	"github.com/pkg/errors"
-	"os"
 	"log"
+	"os"
 )
 
 func main() {
