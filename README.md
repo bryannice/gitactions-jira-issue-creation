@@ -1,4 +1,4 @@
-# Jira Issue Creation
+# GitActions Jira Issue Creation
 
 Git Action to create an Issue in Jira. This action can be used to create an issue when a build fails in a Git Action workflow.
 
@@ -6,9 +6,9 @@ Git Action to create an Issue in Jira. This action can be used to create an issu
 
 This action can be used after any other action. Below is simple example on using it:
 
-1\. Create a `.github/workflows/git-action-jira-issue-creation.yml`
+1\. Create a `.github/workflows/gitactions-jira-issue-creation.yml`
 
-2\. Add the following properties to `git-action-jira-issue-creation.yml` file
+2\. Add the following properties to `gitactions-jira-issue-creation.yml` file
 
 ```yaml
 on: push
@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Jira Creation Demo
-        uses: senzing/git-action-jira-issue-creation@master
+        uses: bryannice/gitactions-jira-issue-creation@master
         env:
           JIRA_ACCOUNT_URL: https://someaccount.atlassian.net/
           JIRA_API_TOKEN: jiraApiToken
