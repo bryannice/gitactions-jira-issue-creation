@@ -55,7 +55,7 @@ Git Actions mounts the runner's working directory to /github/workspace as a defa
 
 ## Reference
 
-* [Creating an API toke for a user.](https://confluence.atlassian.com/cloud/api-tokens-938839638.html)
+* [Creating an API token for a user.](https://confluence.atlassian.com/cloud/api-tokens-938839638.html)
 * [Jira Go Lang Library](https://github.com/andygrunwald/go-jira)
 
 ## License
